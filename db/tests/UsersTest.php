@@ -1,12 +1,12 @@
 <?php
 
-include_once __DIR__ . '\..\objects\ticket.php';
+include_once __DIR__ . '\..\objects\user.php';
 include_once __DIR__ . '\..\config\database.php';
 use PHPUnit\Framework\TestCase;
 
-class TicketTest extends TestCase
+class UsersTest extends TestCase
 {
-    private Ticket $object;
+    private User $object;
 
     /**
      * @var MockObject|PDO
@@ -15,7 +15,7 @@ class TicketTest extends TestCase
     protected function setUp(): void
     {
         $this->db = new Database();
-        $this->object = new Ticket($this->db->getConnection());
+        $this->object = new User($this->db->getConnection());
     }
 
     public function testCreate(): void
@@ -28,14 +28,6 @@ class TicketTest extends TestCase
     {
         $this->object->create();
         $result = $this->object->read();
-        $this->assertTrue($result->rowCount() > 0);
-
-    }
-
-    public function testUserTickers(): void
-    {
-        $this->object->create();
-        $result = $this->object->userTickets();
         $this->assertTrue($result->rowCount() > 0);
     }
 
