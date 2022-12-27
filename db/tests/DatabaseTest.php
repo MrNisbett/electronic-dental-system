@@ -7,15 +7,8 @@ class DatabaseTest extends TestCase
 {
     private Database $object;
 
-    /**
-     * @var MockObject|PDO
-    */
-    private $connection;
-
     protected function setUp(): void
     {
-
-        $this->connection = $this->createMock(PDO::class);
         $this->object = new Database();
     }
 
