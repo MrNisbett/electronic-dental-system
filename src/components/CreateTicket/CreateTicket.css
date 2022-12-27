@@ -1,0 +1,143 @@
+.profile-link {
+    top: 30px;
+    right: 30px;
+    width: 150px;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+.first-root {
+    background: #EFF5E9;
+}
+
+.create-ticket_header {
+    text-align: center;
+    font-size: 38px;
+    font-weight: 700;
+    margin-top: 100px;
+}
+
+.ticket-date {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    margin: 30px auto 30px auto;
+    justify-content: space-evenly;
+}
+
+.date-row {
+    font-size: 28px;
+    text-align: center;
+}
+
+.time-block {
+    width: 155px;
+    height: 62px;
+    margin-top: 20px;
+    background: rgba(224, 152, 45, 0.42);
+    border-radius: 15px;
+    line-height: 62px;
+    cursor: pointer;
+}
+
+.time-block_selected {
+    background: rgba(184, 112, 5, 0.42);
+}
+
+.next-step {
+    position: fixed;
+    bottom: 100px;
+    right: 100px;
+    color: #ABC99C;
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    cursor: pointer;
+}
+
+.next-step:hover {
+    color: rgb(151, 181, 136)
+}
+
+.next-step_image {
+    margin-left: 50px;
+}
+
+.second-root {
+    background: #EFF5E9;
+}
+
+.any-doctor {
+    display: flex;
+    justify-content: center;
+}
+
+.select-doctor {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    margin: 30px auto auto auto;
+    justify-content: space-evenly;
+}
+
+.doctor-row {
+    cursor: pointer;
+}
+
+.doctor {
+    margin-top: 30px;
+}
+
+.doctor:first-child {
+    margin-top: auto;
+}
+
+.ticket-root {
+    width: 500px;
+    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    background: #ABC99C;
+    justify-content: center;
+    padding-top: 50px;
+    margin: 100px auto;
+    position: relative;
+
+    z-index: 999;
+}
+
+.ticket-body {
+    width: 400px;
+    height: 400px;
+    background: #EFF5E9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 35px 27px;
+    font-size: 30px;
+}
+
+.ticket-button {
+    width: 300px;
+    height: 69px;
+    background: #E9CE9A;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+
+    font-size: 30px;
+    line-height: 69px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.ticket-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
