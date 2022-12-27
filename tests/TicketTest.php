@@ -38,4 +38,5 @@ class TicketTest extends TestCase
         $result = $this->object->userTickets();
         $this->assertTrue($result->rowCount() > 0);
     }
+
 }
