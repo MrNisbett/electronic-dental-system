@@ -1,8 +1,11 @@
 <?php
     class Ticket{
+
+        // соединение с БД и таблицей 'ticket'
         private $conn;
         private $table_name = "ticket";
 
+        // свойства объекта
         public $id;
         public $patient = null;
         public $doctor = null;
@@ -13,7 +16,9 @@
             $this->conn = $db;
         }
 
+        // метод create - создание номерка
         function create(){
+            // запрос для вставки (создания) записей
             $query = "INSERT INTO
                         " . $this->table_name . " (patient, doctor, time, date)
                     VALUES(
@@ -22,8 +27,10 @@
                         '$this->time',
                         '$this->date')";
 
+            // подготовка запроса
             $stmt = $this->conn->prepare($query);
 
+            // выполняем запрос
             $executeData = (bool)$stmt->execute();
 
 
@@ -33,9 +40,10 @@
 
             return false;
         }
-
+        // метод read - получение данных из таблицы
         public function read(){
 
+            // выбираем все данные
             $query = "SELECT
                         *
                     FROM
@@ -49,6 +57,7 @@
             return $stmt;
         }
 
+        // метод userTickets - получение номерков только для одного пользователя
         public function userTickets(){
 
             $query = "SELECT

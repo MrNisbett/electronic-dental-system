@@ -1,40 +1,48 @@
 <?php
+    // необходимые HTTP-заголовки
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
     header("Access-Control-Allow-Methods: POST");
     header("Access-Control-Max-Age: 3600");
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
+    // получаем соединение с базой данных
     include_once '../config/database.php';
 
+    // создание объекта пользователя
     include_once '../objects/user.php';
     cors();
 
     $database = new Database();
     $db = $database->getConnection();
 
-    $order = new User($db);
+    $user = new User($db);
 
+    // получаем отправленные данные
     $data = json_decode(file_get_contents("php://input"));
 
+    // убеждаемся, что данные не пусты
     if (
         !empty($data)
     ) {
 
-        $order->email = $data->email;
-        $order->password = $data->password;
+        // устанавливаем значения свойств пользователя
+        $user->email = $data->email;
+        $user->password = $data->password;
 
 
-        if($order->findUser()){
+        if($user->findUser()){
 
-            $stmt = $order->findUser();
-            $order_arr = array();
-            $order_arr["data"] = array();
+            $stmt = $user->findUser();
+            $user_arr = array();
+            $user_arr["data"] = array();
 
+        // получим содержимое нашей таблицы
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            // извлекаем строку
             extract($row);
 
-            $order_arr_item = array(
+            $user_arr_item = array(
                 "id" => $id,
                 "firstName" => html_entity_decode($firstName),
                 "secondName" => html_entity_decode($secondName),
@@ -44,25 +52,34 @@
                 "phone" => html_entity_decode($phone),
             );
 
-            array_push($order_arr['data'], $order_arr_item);
+            array_push($user_arr['data'], $user_arr_item);
         }
 
-            http_response_code(201);
+            // установим код ответа - 200 успешно
+            http_response_code(200);
 
-            echo json_encode($order_arr);
+            // сообщим пользователю
+            echo json_encode($user_arr);
         }
 
+        // если не удается найти пользователя, сообщим пользователю
         else {
 
+            // установим код ответа - 503 сервис недоступен
             http_response_code(503);
 
-            echo json_encode(array("message" => "Невозможно создать учетную запись."), JSON_UNESCAPED_UNICODE);
+            // сообщим пользователю
+            echo json_encode(array("message" => "Невозможно найти учетную запись."), JSON_UNESCAPED_UNICODE);
         }
     }
 
+    // сообщим пользователю что данные неполные
     else {
+
+        // установим код ответа - 400 неверный запрос
         http_response_code(400);
 
-        echo json_encode(array("message" => "Невозможно создать учетную запись. Данные неполные."), JSON_UNESCAPED_UNICODE);
+        // сообщим пользователю
+        echo json_encode(array("message" => "Невозможно найти учетную запись. Данные неполные."), JSON_UNESCAPED_UNICODE);
     }
 ?>

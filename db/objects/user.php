@@ -1,9 +1,11 @@
 <?php
     class User{
 
+        // соединение с БД и таблицей 'users'
         private $conn;
         private $table_name = "users";
 
+        // свойства объекта
         public $id;
         public $firstName = null;
         public $secondName = null;
@@ -18,7 +20,13 @@
             $this->conn = $db;
         }
 
+        function test() {
+
+        }
+
+        // метод create - создание пользователя
         function create(){
+            // запрос для вставки (создания) записей
             $query = "INSERT INTO
                         " . $this->table_name . " (firstName, secondName, patronymic, email, password, role, phone, jobTitle)
                     VALUES(
@@ -31,8 +39,10 @@
                         '$this->phone',
                         '$this->jobTitle')";
 
+            // подготовка запроса
             $stmt = $this->conn->prepare($query);
 
+            // выполняем запрос
             $executeData = (bool)$stmt->execute();
 
 
@@ -43,8 +53,10 @@
             return false;
         }
 
+        // метод read - получение данных из таблицы
         public function read(){
 
+            // выбираем все данные
             $query = "SELECT
                         id, firstName, secondName, patronymic, email, role, phone
                     FROM
@@ -58,8 +70,10 @@
             return $stmt;
         }
 
+        // метод findUser - поиск пользователя по логину и паролю, для авторизации
         public function findUser(){
 
+            // выбираем все данные
             $query = "SELECT
                         id, firstName, secondName, patronymic, email, role, phone
                     FROM
