@@ -1,0 +1,36 @@
+body {
+    background: #EFF5E9;
+}
+
+.profile-root {
+    text-align: center;
+}
+
+.profile-header {
+    font-size: 38px;
+    text-align: center;
+}
+
+.user-card {
+    margin: 30px auto 30px auto;
+}
+.numbers-header {
+    font-size: 38px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.sing-up {
+    width: 300px;
+    margin-top: 15px;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 29px;
+    text-align: center;
+    text-decoration-line: underline;
+    cursor: pointer;
+    margin: 15px auto auto auto;
+}
